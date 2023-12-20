@@ -1,0 +1,74 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Caché de la base de datos
+*.sqlite3
+
+# Entorno virtual
+venv/
+env/
+.env.local
+.env
+
+# Carpeta de archivos estáticos
+staticfiles/
+
+# Carpeta de archivos media
+media/
+
+# Carpeta de configuración local
+*.env
+
+# Carpeta de registros
+logs/
+
+# Archivo de configuración local
+local_settings.py
+
+# Carpeta de archivos de usuario
+user_files/
+
+# Carpeta de dependencias
+lib/
+
+# Carpeta de archivos de compilación
+*.pyc
+*.pyo
+*.pyd
+
+# Archivo de configuración de PyCharm
+.idea/
+
+# Archivos de caché y configuración de VSCode
+.vscode/
+*.code-workspace
+
+# Archivo de configuración de Windows
+Thumbs.db
+ehthumbs.db
+
+# Carpeta de Mac
+.DS_Store
+
+# Carpeta de Node.js
+node_modules/
+
+# Carpeta de archivos de compilación de TypeScript
+*.js.map
+
+# Carpeta de archivos de compilación de Sass
+tutorial/static/assets
+
+
+# Archivo de configuración de Heroku
+Procfile
+
+# Carpeta de archivos de migraciones
+*/migrations/
+
+# Archivo de configuración de Docker
+docker-compose.yml
+Dockerfile
