@@ -1,4 +1,26 @@
+:root {
+  --background-color: #202020;
+  --link-inactive: rgb(180, 94, 21);
+  --link-active: rgb(250, 140, 40);
+}
+
 body {
-  background: #202020;
+  background: var(--background-color);
   color: white;
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-inactive);
+  transition: all 0.2s ease-in-out;
+}
+
+.active {
+  color: var(--link-active);
+}
+
+.navigator {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
