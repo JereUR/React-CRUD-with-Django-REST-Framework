@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import { createTask } from '../api/tasks.api'
+import { createTask, deleteTask } from '../api/tasks.api'
 
 export default function TaskFormPage() {
   const {
@@ -11,6 +11,7 @@ export default function TaskFormPage() {
   } = useForm()
 
   const navigate = useNavigate()
+  const params = useParams()
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -24,6 +25,24 @@ export default function TaskFormPage() {
       console.error('Error en la solicitud:', error)
     }
   })
+
+  const handleDelete = async () => {
+    const accepted = window.confirm(
+      'You are going to delete this task. Are you sure?'
+    )
+    if (accepted) {
+      try {
+        const res = await deleteTask(params.id)
+        if (res.status === 204) {
+          navigate('/tasks')
+        } else {
+          console.error('Error en la solicitud:', res.status, res.statusText)
+        }
+      } catch (error) {
+        console.error('Error en la solicitud:', error)
+      }
+    }
+  }
 
   return (
     <div>
@@ -42,6 +61,7 @@ export default function TaskFormPage() {
         {errors.description && <span>Description is required.</span>}
         <button>Save</button>
       </form>
+      {params.id && <button onClick={handleDelete}>Delete</button>}
     </div>
   )
 }
