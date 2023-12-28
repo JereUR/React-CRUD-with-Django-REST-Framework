@@ -1,28 +1,55 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { createTask, deleteTask } from '../api/tasks.api'
+import { createTask, deleteTask, getTask, updateTask } from '../api/tasks.api'
+import { useEffect } from 'react'
 
 export default function TaskFormPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    setValue
   } = useForm()
 
   const navigate = useNavigate()
   const params = useParams()
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      const res = await createTask(data)
-      if (res.status === 201) {
-        navigate('/tasks')
-      } else {
-        console.error('Error en la solicitud:', res.status, res.statusText)
+  useEffect(() => {
+    async function loadTask() {
+      if (params.id) {
+        const { data } = await getTask(params.id)
+        setValue('title', data.title)
+        setValue('description', data.description)
       }
-    } catch (error) {
-      console.error('Error en la solicitud:', error)
+    }
+
+    loadTask()
+  }, [])
+
+  const onSubmit = handleSubmit(async (data) => {
+    if (params.id) {
+      try {
+        const res = await updateTask(params.id, data)
+        if (res.status === 200) {
+          navigate('/tasks')
+        } else {
+          console.error('Error en la solicitud:', res.status, res.statusText)
+        }
+      } catch (error) {
+        console.error('Error en la solicitud:', error)
+      }
+    } else {
+      try {
+        const res = await createTask(data)
+        if (res.status === 201) {
+          navigate('/tasks')
+        } else {
+          console.error('Error en la solicitud:', res.status, res.statusText)
+        }
+      } catch (error) {
+        console.error('Error en la solicitud:', error)
+      }
     }
   })
 
