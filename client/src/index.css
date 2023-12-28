@@ -2,29 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background-color: #202020;
-  --link-inactive: rgb(180, 94, 21);
-  --link-active: rgb(250, 140, 40);
-}
-
 body {
-  background: var(--background-color);
+  background: #202020;
   color: white;
-}
-
-a {
-  text-decoration: none;
-  color: var(--link-inactive);
-  transition: all 0.2s ease-in-out;
-}
-
-.active {
-  color: var(--link-active);
-}
-
-.navigator {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
