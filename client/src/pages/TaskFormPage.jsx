@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 
 import { createTask, deleteTask, getTask, updateTask } from '../api/tasks.api'
 import { useEffect } from 'react'
@@ -33,22 +34,60 @@ export default function TaskFormPage() {
         const res = await updateTask(params.id, data)
         if (res.status === 200) {
           navigate('/tasks')
+          toast.success('Task updated.', {
+            position: 'bottom-right',
+            style: {
+              background: '#101010',
+              color: 'white'
+            }
+          })
         } else {
-          console.error('Error en la solicitud:', res.status, res.statusText)
+          toast.error('Request error: ', res.status, res.statusText, {
+            position: 'bottom-right',
+            style: {
+              background: '#101010',
+              color: 'red'
+            }
+          })
         }
       } catch (error) {
-        console.error('Error en la solicitud:', error)
+        toast.error('Request error: ', error, {
+          position: 'bottom-right',
+          style: {
+            background: '#101010',
+            color: 'red'
+          }
+        })
       }
     } else {
       try {
         const res = await createTask(data)
         if (res.status === 201) {
           navigate('/tasks')
+          toast.success('Task created.', {
+            position: 'bottom-right',
+            style: {
+              background: '#101010',
+              color: 'white'
+            }
+          })
         } else {
-          console.error('Error en la solicitud:', res.status, res.statusText)
+          toast.error('Request error: ', res.status, res.statusText, {
+            position: 'bottom-right',
+            style: {
+              background: '#101010',
+              color: 'red'
+            }
+          })
         }
       } catch (error) {
-        console.error('Error en la solicitud:', error)
+        toast.error('Request error: ', error, {
+          position: 'bottom-right',
+          style: {
+            background: '#101010',
+            color: 'red'
+          }
+        })
       }
     }
   })
@@ -62,11 +101,30 @@ export default function TaskFormPage() {
         const res = await deleteTask(params.id)
         if (res.status === 204) {
           navigate('/tasks')
+          toast.success('Task deleted.', {
+            position: 'bottom-right',
+            style: {
+              background: '#101010',
+              color: 'white'
+            }
+          })
         } else {
-          console.error('Error en la solicitud:', res.status, res.statusText)
+          toast.error('Request error: ', res.status, res.statusText, {
+            position: 'bottom-right',
+            style: {
+              background: '#101010',
+              color: 'red'
+            }
+          })
         }
       } catch (error) {
-        console.error('Error en la solicitud:', error)
+        toast.error('Request error: ', error, {
+          position: 'bottom-right',
+          style: {
+            background: '#101010',
+            color: 'red'
+          }
+        })
       }
     }
   }
