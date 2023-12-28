@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --background-color: #202020;
   --link-inactive: rgb(180, 94, 21);
